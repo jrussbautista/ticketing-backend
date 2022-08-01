@@ -9,6 +9,11 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    const STATUS_PENDING = "pending";
+    const STATUS_SOLVED = "solved";
+    const STATUS_CANCELLED = "cancelled";
+    const STATUS_CLOSED = "closed";
+
     public function user() {
         return $this->belongsTo(User::class);
     }
