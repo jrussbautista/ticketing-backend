@@ -24,7 +24,7 @@ class TicketFactory extends Factory
     public function definition()
     {
 
-        $statuses = ['pending','resolved', 'cancelled', 'closed'];
+        $statuses = ['pending','resolved', 'closed', 'rejected'];
 
         $randIndex = array_rand($statuses);
         $status = $statuses[$randIndex];

@@ -9,10 +9,10 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    const STATUS_PENDING = "pending";
-    const STATUS_RESOLVED = "resolved";
-    const STATUS_CANCELLED = "cancelled";
-    const STATUS_CLOSED = "closed";
+    const STATUS_PENDING = 'pending';
+    const STATUS_RESOLVED = 'resolved';
+    const STATUS_CLOSED = 'closed';
+    const STATUS_REJECTED = 'rejected';
 
     protected $fillable = ['title', 'description', 'priority_id', 'type_id', 'assignee_id', 'user_id'];
 
