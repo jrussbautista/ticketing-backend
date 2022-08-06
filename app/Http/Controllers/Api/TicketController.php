@@ -15,5 +15,10 @@ class TicketController extends Controller
         $tickets = Ticket::with(['user', 'assignee', 'type'])->paginate($limit);
         return TicketResource::collection($tickets);
     }
+
+    public function show(Ticket $ticket) {
+        return new TicketResource($ticket);
+    }
+
     
 }
