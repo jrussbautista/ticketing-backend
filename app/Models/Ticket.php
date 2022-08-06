@@ -10,7 +10,7 @@ class Ticket extends Model
     use HasFactory;
 
     const STATUS_PENDING = "pending";
-    const STATUS_SOLVED = "solved";
+    const STATUS_RESOLVED = "resolved";
     const STATUS_CANCELLED = "cancelled";
     const STATUS_CLOSED = "closed";
 
