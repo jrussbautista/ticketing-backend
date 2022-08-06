@@ -14,6 +14,8 @@ class Ticket extends Model
     const STATUS_CANCELLED = "cancelled";
     const STATUS_CLOSED = "closed";
 
+    protected $fillable = ['title', 'description', 'priority_id', 'type_id', 'assignee_id', 'user_id'];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -24,10 +26,6 @@ class Ticket extends Model
 
     public function type() {
         return $this->belongsTo(TicketType::class);
-    }
-
-    public function status() {
-        return $this->belongsTo(Status::class);
     }
 
     public function priority() {
