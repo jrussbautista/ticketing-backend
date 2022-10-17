@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\MeController;
 use App\Http\Controllers\Api\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,15 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::post('login', LoginController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Auth
+    Route::get('me', MeController::class);
     Route::post('logout', LogoutController::class);
 
     // Tickets
