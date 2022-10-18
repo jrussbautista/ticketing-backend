@@ -31,14 +31,5 @@ class AuthTest extends TestCase
         ]);
     }
 
-    public function test_unauthenticated_user_should_not_retrieve_its_details() {
-        $response = $this->getJson('/api/me');
-
-        $response->assertStatus(401);
-        $response->assertJson([
-            'message' => 'Unauthenticated.'
-        ]);
-    }
-
 
 }

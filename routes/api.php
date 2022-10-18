@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Tickets
     Route::apiResource('tickets', TicketController::class);
+    
 
 
 });

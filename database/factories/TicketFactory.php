@@ -32,11 +32,19 @@ class TicketFactory extends Factory
         return [
             'title' => fake()->sentence(2),
             'description' => fake()->sentences(3, true),
-            'priority_id' => Priority::inRandomOrder()->first()->id,
-            'type_id' => TicketType::inRandomOrder()->first()->id,
+            'priority_id' => function() {
+                return Priority::factory()->create()->id;
+            },
+            'type_id' => function() {
+                return TicketType::factory()->create()->id;
+            },
             'status' => $status,
-            'user_id' => User::inRandomOrder()->first()->id,
-            'assignee_id' => User::inRandomOrder()->first()->id,
+            'user_id' => function() {
+                return User::factory()->create()->id;
+            },
+            'assignee_id' => function() {
+                return User::factory()->create()->id;
+            },
         ];
     }
 }

@@ -13,7 +13,13 @@ class TicketController extends Controller
     public function index() {
         $DEFAULT_LIMIT = 20;
         $limit = request('limit') ?? $DEFAULT_LIMIT;
-        $tickets = Ticket::with(['user', 'assignee', 'type'])->paginate($limit);
+
+        $tickets = Ticket::with(['user', 'assignee', 'type'])
+            ->when(request('created_by_me'), function($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->paginate($limit);
+    
         return TicketResource::collection($tickets);
     }
 
