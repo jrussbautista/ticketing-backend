@@ -14,7 +14,12 @@ class Ticket extends Model
     const STATUS_CLOSED = 'closed';
     const STATUS_REJECTED = 'rejected';
 
-    protected $fillable = ['title', 'description', 'priority_id', 'type_id', 'assignee_id', 'user_id'];
+    const PRIORITY_NORMAL = 'normal';
+    const PRIORITY_MEDIUM = 'medium';
+    const PRIORITY_HIGH = 'high';
+    const PRIORITY_URGE = 'urgent';
+
+    protected $fillable = ['title', 'description', 'status', 'priority', 'type_id', 'assignee_id', 'user_id'];
 
     public function user() {
         return $this->belongsTo(User::class);

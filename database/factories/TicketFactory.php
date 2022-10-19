@@ -25,16 +25,17 @@ class TicketFactory extends Factory
     {
 
         $statuses = ['pending','resolved', 'closed', 'rejected'];
+        $priorities = ['normal', 'medium', 'high', 'urgent'];
 
-        $randIndex = array_rand($statuses);
-        $status = $statuses[$randIndex];
+        $randStatusIndex = array_rand($statuses);
+        $randPriorityIndex = array_rand($statuses);
+        $status = $statuses[$randStatusIndex];
+        $priority = $priorities[$randPriorityIndex];
 
         return [
             'title' => fake()->sentence(2),
             'description' => fake()->sentences(3, true),
-            'priority_id' => function() {
-                return Priority::factory()->create()->id;
-            },
+            'priority' => $priority,
             'type_id' => function() {
                 return TicketType::factory()->create()->id;
             },
