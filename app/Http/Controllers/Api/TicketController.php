@@ -14,8 +14,9 @@ class TicketController extends Controller
         $DEFAULT_LIMIT = 20;
         $limit = request('limit') ?? $DEFAULT_LIMIT;
 
+
         $tickets = Ticket::with(['user', 'assignee', 'type'])
-            ->when(request('created_by_me'), function($query) {
+            ->when(request('created_by_me') === "true", function($query) {
                 $query->where('user_id', auth()->user()->id);
             })
             ->paginate($limit);

@@ -22,7 +22,7 @@ class TicketsTest extends TestCase
         Ticket::factory()->create();
         $myTicket = Ticket::factory(['user_id' => $user->id])->create();
 
-        $response = $this->getJson('/api/tickets?created_by_me=1');
+        $response = $this->getJson('/api/tickets?created_by_me=true');
 
         $response->assertStatus(200);
         $response->assertJson(fn (AssertableJson $json) =>
