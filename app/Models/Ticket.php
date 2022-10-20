@@ -9,10 +9,11 @@ class Ticket extends Model
 {
     use HasFactory;
 
+    const STATUS_OPEN = 'open';
     const STATUS_PENDING = 'pending';
-    const STATUS_RESOLVED = 'resolved';
+    const STATUS_SOLVED = 'solved';
     const STATUS_CLOSED = 'closed';
-    const STATUS_REJECTED = 'rejected';
+    const STATUS_CANCELLED = 'cancelled';
 
     const PRIORITY_NORMAL = 'normal';
     const PRIORITY_MEDIUM = 'medium';
