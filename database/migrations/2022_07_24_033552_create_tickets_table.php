@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('type_id')->constrained('ticket_types', 'id');
-            $table->string('status')->default(Ticket::STATUS_PENDING);
+            $table->string('status')->default(Ticket::STATUS_OPEN);
             $table->string('priority');
             $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
             $table->foreignId('assignee_id')->constrained('users', 'id')->onDelete('cascade');
