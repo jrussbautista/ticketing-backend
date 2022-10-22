@@ -15,9 +15,6 @@ class TicketTypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['bug', 'hr', 'it'];
-        foreach ($types as $type) {
-            TicketType::factory()->create(['name' => $type]);
-        }
+        TicketType::factory(60)->create();
     }
 }

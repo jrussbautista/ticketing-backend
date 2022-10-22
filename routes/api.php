@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\MeController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\TicketTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Tickets
     Route::apiResource('tickets', TicketController::class);
+
+    // Ticket Types
+    Route::apiResource('types', TicketTypeController::class);
     
 
 
