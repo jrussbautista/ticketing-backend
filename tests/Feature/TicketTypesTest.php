@@ -14,7 +14,8 @@ class TicketTypes extends TestCase
 
     private const JSON_TICKET_TYPES = [
         'id',
-        'name'
+        'name',
+        'status'
     ];
 
     private const JSON_TICKET_TYPES_COLLECTION = [
