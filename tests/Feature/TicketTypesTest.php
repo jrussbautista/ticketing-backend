@@ -49,4 +49,44 @@ class TicketTypes extends TestCase
         $response->assertStatus(200);
         $response->assertJsonStructure(self::JSON_TICKET_TYPES_COLLECTION);
     }
+
+    public function test_admin_can_deactivate_ticket_type_status() {
+        $user = User::factory()->create(['role' => User::ROLE_ADMIN]);
+        $this->actingAs($user);
+
+        $ticketType =  TicketType::factory()->create(['status' => TicketType::STATUS_ACTIVE]);
+
+        $response = $this->postJson('/api/types/' . $ticketType->id . '/deactivate');
+        $response->assertStatus(200);
+        $response->assertJson([
+            'data' => [
+                'status' => TicketType::STATUS_INACTIVE
+            ]
+        ]);
+    }
+
+    public function test_non_admin_cannot_deactivate_ticket_type_status() {
+        $user = User::factory()->create(['role' => User::ROLE_USER]);
+        $this->actingAs($user);
+
+        $ticketType =  TicketType::factory()->create(['status' => TicketType::STATUS_ACTIVE]);
+
+        $response = $this->postJson('/api/types/' . $ticketType->id . '/deactivate');
+        $response->assertStatus(403);
+    }
+
+    public function test_admin_can_activate_ticket_type_status() {
+        $user = User::factory()->create(['role' => User::ROLE_ADMIN]);
+        $this->actingAs($user);
+
+        $ticketType =  TicketType::factory()->create(['status' => TicketType::STATUS_ACTIVE]);
+
+        $response = $this->postJson('/api/types/' . $ticketType->id . '/activate');
+        $response->assertStatus(200);
+        $response->assertJson([
+            'data' => [
+                'status' => TicketType::STATUS_INACTIVE
+            ]
+        ]);
+    }
 }

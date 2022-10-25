@@ -9,4 +9,9 @@ class TicketType extends Model
 {
     use HasFactory;
 
+    const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
+
+    protected $fillable = ['name', 'status'];
+
 }
