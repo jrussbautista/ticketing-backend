@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\MeController;
 use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\TicketTypeController;
+use App\Http\Controllers\Api\TicketTypeDeactivateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('tickets', TicketController::class);
 
     // Ticket Types
+    Route::post('types/{ticketType}/activate', TicketTypeDeactivateController::class);
+    Route::post('types/{ticketType}/deactivate', TicketTypeDeactivateController::class);
     Route::apiResource('types', TicketTypeController::class);
     
 
