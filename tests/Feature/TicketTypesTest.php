@@ -79,14 +79,24 @@ class TicketTypes extends TestCase
         $user = User::factory()->create(['role' => User::ROLE_ADMIN]);
         $this->actingAs($user);
 
-        $ticketType =  TicketType::factory()->create(['status' => TicketType::STATUS_ACTIVE]);
+        $ticketType =  TicketType::factory()->create(['status' => TicketType::STATUS_INACTIVE]);
 
         $response = $this->postJson('/api/types/' . $ticketType->id . '/activate');
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
-                'status' => TicketType::STATUS_INACTIVE
+                'status' => TicketType::STATUS_ACTIVE
             ]
         ]);
+    }
+
+    public function test_non_admin_cannot_activate_ticket_type_status() {
+        $user = User::factory()->create(['role' => User::ROLE_USER]);
+        $this->actingAs($user);
+
+        $ticketType =  TicketType::factory()->create(['status' => TicketType::STATUS_INACTIVE]);
+
+        $response = $this->postJson('/api/types/' . $ticketType->id . '/activate');
+        $response->assertStatus(403);
     }
 }
