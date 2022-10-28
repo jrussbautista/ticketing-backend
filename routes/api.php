@@ -33,8 +33,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('tickets', TicketController::class);
 
     // Ticket Types
-    Route::post('types/{ticketType}/activate', TicketTypeActivateController::class);
-    Route::post('types/{ticketType}/deactivate', TicketTypeDeactivateController::class);
+    Route::group(['middleware' => ['admin']], function () {
+        Route::post('types/{ticketType}/activate', TicketTypeActivateController::class);
+        Route::post('types/{ticketType}/deactivate', TicketTypeDeactivateController::class);
+    });
     Route::apiResource('types', TicketTypeController::class);
     
 

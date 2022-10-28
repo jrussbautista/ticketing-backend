@@ -11,8 +11,6 @@ class TicketTypeDeactivateController extends Controller
 {
     public function __invoke(Request $request, TicketType $ticketType)
     {
-        $this->authorize('update', $ticketType);
-
         $ticketType->update(['status' => TicketType::STATUS_INACTIVE]);
         return new TicketTypeResource($ticketType);
     }
