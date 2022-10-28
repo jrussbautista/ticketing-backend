@@ -53,7 +53,7 @@ class TicketTypePolicy
      */
     public function update(User $user, TicketType $ticketType)
     {
-        return $user->role === User::ROLE_ADMIN;
+        //
     }
 
     /**

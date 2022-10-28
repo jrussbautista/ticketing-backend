@@ -46,7 +46,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getIsAdminAttribute() {
+        return $this->role === User::ROLE_ADMIN;
+    }
+
     public function tickets() {
         return $this->hasMany(Ticket::class);
     }
+
 }

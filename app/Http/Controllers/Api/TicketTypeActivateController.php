@@ -17,8 +17,6 @@ class TicketTypeActivateController extends Controller
      */
     public function __invoke(Request $request, TicketType $ticketType)
     {
-        $this->authorize('update', $ticketType);
-
         $ticketType->update(['status' => TicketType::STATUS_ACTIVE]);
         return new TicketTypeResource($ticketType);
     }
